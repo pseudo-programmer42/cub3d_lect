@@ -84,7 +84,6 @@ int			save_bmp(t_all *a)
 {
 	int		i;
 	int		fd;
-	int		tmp;
 
 	i = 0;
 	//draw_screen(a, SAVE);
