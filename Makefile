@@ -20,7 +20,7 @@ CFLAGS = -Wall -Wextra -Werror -g -O3
 INCS = includes
 SRCS_DIR = ./srcs/
 SRCS_FILE = \
-	cub3d.c			init_all.c 		key.c				parse_all.c	\
+	cub3d.c			init_all.c 		parse_all.c	\
 	parse_tool.c 	print_msg.c 	save_bmp.c \
 
 SRCS_MINCKIM_DIR = ./srcs_minckim/
