@@ -6,7 +6,7 @@
 /*   By: hyochoi <hyochoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/16 17:16:42 by hyochoi           #+#    #+#             */
-/*   Updated: 2020/09/18 12:44:59 by hyochoi          ###   ########.fr       */
+/*   Updated: 2020/09/24 23:35:36 by hyochoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,6 @@
 # define SOUTH			2
 # define WEST			3
 # define SPRITE			4
-
-# define WALK_SPEED 0.03
-# define TURN_SPEED 0.05
-
-# define EVENT_X_BUTTON		17
-# define EVENT_KEY_PRESS	2
-# define EVENT_KEY_RELEASE	3
 
 # define KEY_A		0
 # define KEY_S		1
@@ -68,14 +61,6 @@
 
 # define FLOOR			0
 # define CEIL			1
-
-# define FRONT_BACK		0
-# define LEFT_RIGHT		1
-
-# define COLOR_WHITE	0x00ffffff
-# define COLOR_RED		0x00ff0000
-# define COLOR_GREEN	0x0000ff00
-# define COLOR_BLUE		0x000000ff
 
 # define PRINT_COLOR_RED	"\x1b[31m"
 # define PRINT_COLOR_GREEN	"\x1b[32m"

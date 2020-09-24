@@ -6,7 +6,7 @@
 /*   By: hyochoi <hyochoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 23:06:43 by hyochoi           #+#    #+#             */
-/*   Updated: 2020/09/18 12:11:31 by hyochoi          ###   ########.fr       */
+/*   Updated: 2020/09/24 23:43:30 by hyochoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@
 #define TEXNUM_MAX 5
 
 /*
-** I got game textures from here https://opengameart.org/textures/all
+** ============================================================================
+** structures
+** ============================================================================
 */
-
 typedef struct		s_mlx
 {
 	void			*win;
@@ -77,12 +78,12 @@ typedef struct		s_key
 
 typedef struct		s_all
 {
+	t_key			key;
+	t_player		pl;
 	t_mlx			mlx;
+	t_map			map;
 	t_img			img;
 	t_img			tex[TEXNUM_MAX];
-	t_map			map;
-	t_player		pl;
-	t_key			key;
 }					t_all;
 
 typedef struct		s_mapcheck
@@ -94,16 +95,33 @@ typedef struct		s_mapcheck
 	int				n;
 }					t_mapcheck;
 
+/*
+**	===========================================================================
+**					init_all.c
+*/
 void				init_all(t_all *a);
-
+/*
+**	===========================================================================
+**					parse_all.c
+*/
 int					parse_map(char *filename, t_all *a);
+/*
+**	===========================================================================
+**					parse_tool.c
+*/
 int					parse_tex(char *line, int num, t_all *a);
 int					parse_resol(char *line, t_all *a);
 int					parse_color(char *line, int n, t_all *a);
 int					map_valid_check(t_all *a);
-
+/*
+**	===========================================================================
+**					print_msg.c
+*/
 int					error_msg(int num);
-
+/*
+**	===========================================================================
+**					save_bmp.c
+*/
 int					save_bmp(t_all *a);
 
 #endif

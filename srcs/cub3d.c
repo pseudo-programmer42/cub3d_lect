@@ -3,20 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: hyochoi <hyochoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/16 16:04:40 by hyochoi           #+#    #+#             */
-/*   Updated: 2020/09/24 14:39:30 by minckim          ###   ########.fr       */
+/*   Updated: 2020/09/24 23:45:03 by hyochoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "hyochoi_macros.h"
-
-/*
-** int			set_mlx(t_all *a)
-** static int	set_game(t_all *a)
-*/
 
 int			main(int argc, char *argv[])
 {
@@ -52,22 +47,10 @@ int			main(int argc, char *argv[])
 **	minckim's code end---------------------------------------------------------
 */
 
-
-
-/*
-** 	if ((err = set_game(&a)))
-** 		return (error_msg(err));
-*/
-
 /*
 **	save_bmp needs draw_screen
 **	if (argc == 3)
 **	return ((err = save_bmp(&a)) == 0 ? 0 : error_msg(err));
-*/
-
-/*
-** if ((err = set_mlx(&a)))
-**	return (error_msg(err));
 */
 	return (0);
 }
