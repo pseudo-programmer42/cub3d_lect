@@ -6,7 +6,7 @@
 /*   By: hyochoi <hyochoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/16 16:04:40 by hyochoi           #+#    #+#             */
-/*   Updated: 2020/09/24 23:45:03 by hyochoi          ###   ########.fr       */
+/*   Updated: 2020/09/25 00:45:11 by hyochoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ int			main(int argc, char *argv[])
 	int		err;
 
 	errno = 0;
-
+/*
+**		Check arguments, init structures and init mlx pointer
+*/
 	if ((argc == 3 && ft_strcmp(argv[2], "--save")) || argc < 2 || argc > 3)
 		return (error_msg(INVALID_ARG));
 
@@ -27,7 +29,9 @@ int			main(int argc, char *argv[])
 
 	if (!(a.mlx.mlx = mlx_init()))
 		return (error_msg(MLX_ERROR));
-
+/*
+**		Parse map file
+*/
 	if ((err = parse_map(argv[1], &a)))
 		return (error_msg(err));
 

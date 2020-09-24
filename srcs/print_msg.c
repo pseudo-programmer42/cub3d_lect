@@ -6,7 +6,7 @@
 /*   By: hyochoi <hyochoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/16 17:45:12 by hyochoi           #+#    #+#             */
-/*   Updated: 2020/09/18 12:03:13 by hyochoi          ###   ########.fr       */
+/*   Updated: 2020/09/25 01:20:32 by hyochoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,10 @@ int			error_msg(int num)
 		msg_two(num);
 	if (errno != 0 && errno != 60)
 		perror("");
+/*
+**		Exit with user-defined error number.
+**		When exit() function called, OS will free all allocated memories.
+**		We can check the number with "echo $?" in shell.
+*/
 	exit(num);
 }
