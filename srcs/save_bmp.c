@@ -6,7 +6,7 @@
 /*   By: hyochoi <hyochoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 19:12:34 by hyochoi           #+#    #+#             */
-/*   Updated: 2020/09/17 23:34:46 by hyochoi          ###   ########.fr       */
+/*   Updated: 2020/09/24 23:40:39 by hyochoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,6 @@ int			save_bmp(t_all *a)
 	int		tmp;
 
 	i = 0;
-	if (!(a->img.ptr = mlx_new_image(a->mlx.mlx, a->img.w, a->img.h))
-		|| !(a->img.addr = (unsigned int *)mlx_get_data_addr(
-		a->img.ptr, &tmp, &tmp, &tmp)))
-		return (MLX_ERROR);
 	//draw_screen(a, SAVE);
 	fd = open("img.bmp", O_CREAT | O_WRONLY | O_TRUNC, 0700);
 	bmp_type(a, fd);
