@@ -57,13 +57,13 @@ int		player_move(t_runtime *r)
 		r->player_origin = vec_sub(r->player_origin, perp);
 	if (r->key.arr_l)
 	{
-		r->player_dir = vec_rot_min_cw(r->player_dir);
-		r->player_plane = vec_rot_min_cw(r->player_plane);
+		r->player_dir = vec_rot_min_ccw(r->player_dir);
+		r->player_plane = vec_rot_min_ccw(r->player_plane);
 	}
 	if (r->key.arr_r)
 	{
-		r->player_dir = vec_rot_min_ccw(r->player_dir);
-		r->player_plane = vec_rot_min_ccw(r->player_plane);
+		r->player_dir = vec_rot_min_cw(r->player_dir);
+		r->player_plane = vec_rot_min_cw(r->player_plane);
 	}
 	return 0;
 }

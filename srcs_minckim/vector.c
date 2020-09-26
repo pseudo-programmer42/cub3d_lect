@@ -17,27 +17,29 @@ t_vec	vec_sub(t_vec a, t_vec b)
 	return (a);
 }
 
-t_vec	vec_rot_min_cw(t_vec a)
-{
-	static double	sin_unit;
-	static double	cos_unit;
-
-	sin_unit = sin_unit ? sin_unit : sin(M_PI * ANGLE_MIN / 180);
-	cos_unit = cos_unit ? cos_unit : cos(M_PI * ANGLE_MIN / 180);
-	a.x = cos_unit * a.x - sin_unit * a.y;
-	a.y = cos_unit * a.y + sin_unit * a.x;
-	return (a);
-}
-
 t_vec	vec_rot_min_ccw(t_vec a)
 {
 	static double	sin_unit;
 	static double	cos_unit;
+	t_vec			result;
+
+	sin_unit = sin_unit ? sin_unit : sin(M_PI * ANGLE_MIN / 180);
+	cos_unit = cos_unit ? cos_unit : cos(M_PI * ANGLE_MIN / 180);
+	result.x = cos_unit * a.x - sin_unit * a.y;
+	result.y = cos_unit * a.y + sin_unit * a.x;
+	return (a);
+}
+
+t_vec	vec_rot_min_cw(t_vec a)
+{
+	static double	sin_unit;
+	static double	cos_unit;
+	t_vec			result;
 
 	sin_unit = sin_unit ? sin_unit : -sin(M_PI * ANGLE_MIN / 180);
 	cos_unit = cos_unit ? cos_unit : cos(M_PI * ANGLE_MIN / 180);
-	a.x = cos_unit * a.x - sin_unit * a.y;
-	a.y = cos_unit * a.y + sin_unit * a.x;
+	result.x = cos_unit * a.x - sin_unit * a.y;
+	result.y = cos_unit * a.y + sin_unit * a.x;
 	return (a);
 }
 
