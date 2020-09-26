@@ -109,9 +109,9 @@ void			draw_floor(t_screen *screen, int color_floor, int color_ceiling);
 **				m_vector.c
 */
 t_vec			vec_new(double a, double b);
-t_vec			vec_add(t_vec *a, t_vec *b);
-t_vec			vec_sub(t_vec *a, t_vec *b);
-t_vec			vec_rot_min_cw(t_vec *a);
-t_vec			vec_rot_min_ccw(t_vec *a);
-t_vec			vec_mul(t_vec *a, double b);
+t_vec			vec_add(t_vec a, t_vec b);
+t_vec			vec_sub(t_vec a, t_vec b);
+t_vec			vec_rot_min_cw(t_vec a);
+t_vec			vec_rot_min_ccw(t_vec a);
+t_vec			vec_mul(t_vec a, double b);
 #endif

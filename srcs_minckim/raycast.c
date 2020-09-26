@@ -46,8 +46,8 @@ t_vec	ray_x_face(t_ray *ray, t_entity *wall, t_vec *origin)
 	t_vec	coeff;
 	t_vec	constant;
 
-	coeff = vec_sub(&wall->a, &wall->b);
-	constant = vec_sub(&wall->a, origin);
+	coeff = vec_sub(wall->a, wall->b);
+	constant = vec_sub(wall->a, *origin);
 	return (equation_solver(&ray->dir, &coeff, &constant));
 }
 
@@ -129,8 +129,8 @@ void	draw_sprite(t_screen *screen, t_entity *sprite)
 	dir.y = screen->dir.x * WALL_W / 2;
 	while (sprite->texture)
 	{
-		sprite_tmp.a = vec_add(&sprite->a, &dir);
-		sprite_tmp.b = vec_sub(&sprite->a, &dir);
+		sprite_tmp.a = vec_add(sprite->a, dir);
+		sprite_tmp.b = vec_sub(sprite->a, dir);
 		range = get_width_range(screen, &sprite_tmp);
 		min = (int)range.x;
 		max = (int)range.y;
