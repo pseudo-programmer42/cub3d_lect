@@ -77,7 +77,7 @@ void	draw_vertical(t_screen *screen, t_entity *wall, t_vec *hit_info, int x)
 		if ((color = img_pick_color(wall->texture, texture_x, texture_y)) \
 		 != 0xff000000)
 		{
-			screen->pixel[x][screen_y0].color[0] = color;
+			*(screen->pixel[x][screen_y0].color) = color;
 			screen->pixel[x][screen_y0].distance = hit_info->x;
 		}
 		screen_y0++;
