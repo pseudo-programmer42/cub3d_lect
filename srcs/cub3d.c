@@ -6,7 +6,7 @@
 /*   By: hyochoi <hyochoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/16 16:04:40 by hyochoi           #+#    #+#             */
-/*   Updated: 2020/09/25 00:45:11 by hyochoi          ###   ########.fr       */
+/*   Updated: 2020/09/27 18:19:40 by hyochoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ int			main(int argc, char *argv[])
 */
 	t_runtime	r;
 	convert_data(&r, &a);
+	
+	if (argc == 3)
+		return ((err = save_bmp(&r)) == 0 ? 0 : error_msg(err));
+
 	mlx_hook(r.screen.win, 2, 1, key_press_manager, &r.key);
 	mlx_hook(r.screen.win, 3, 2, key_release_manager, &r.key);
 	mlx_hook(r.screen.win, 17, 1L << 5, cub_close, 0);
@@ -49,12 +53,6 @@ int			main(int argc, char *argv[])
 	mlx_loop(r.screen.mlx);
 /*
 **	minckim's code end---------------------------------------------------------
-*/
-
-/*
-**	save_bmp needs draw_screen
-**	if (argc == 3)
-**	return ((err = save_bmp(&a)) == 0 ? 0 : error_msg(err));
 */
 	return (0);
 }

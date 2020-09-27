@@ -6,7 +6,7 @@
 /*   By: hyochoi <hyochoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 15:35:56 by hyochoi           #+#    #+#             */
-/*   Updated: 2020/09/25 00:51:12 by hyochoi          ###   ########.fr       */
+/*   Updated: 2020/09/25 01:27:11 by hyochoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	check_map(t_all *a)
 
 	j = 0;
 /*
-**		Free forward blank lines in list 
+**		Free fore blank lines in list 
 */
 	cur = a->map.list;
 	while (is_blank_line(cur->content))
