@@ -57,10 +57,8 @@ int		player_move(t_runtime *r)
 		r->player_origin = vec_sub(r->player_origin, perp);
 	if (r->key.arr_l)
 	{
-		printf("%f %F\n", r->player_plane.x, r->player_plane.y);
 		r->player_dir = vec_rot_min_ccw(r->player_dir);
 		r->player_plane = vec_rot_min_ccw(r->player_plane);
-		printf("%f %F\n", r->player_plane.x, r->player_plane.y);
 	}
 	if (r->key.arr_r)
 	{
