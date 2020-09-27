@@ -6,7 +6,7 @@
 /*   By: hyochoi <hyochoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/21 20:28:30 by hyochoi           #+#    #+#             */
-/*   Updated: 2020/09/25 01:16:04 by hyochoi          ###   ########.fr       */
+/*   Updated: 2020/09/25 03:25:50 by hyochoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,19 @@ int			parse_tex(char *line, int n, t_all *a)
 	}
 /*
 **		If filename is valid, convert xpm file to image and make a texture array.
-**		We will only use the array. So free image pointer.
 */
 	if (!(a->tex[n].ptr = mlx_xpm_file_to_image(a->mlx.mlx, filename, &(a->tex[n].w), &(a->tex[n].h))) ||
 		!(a->tex[n].addr = (unsigned int *)mlx_get_data_addr(a->tex[n].ptr,
 							&(a->tex[n].bits_per_pixel), &(a->tex[n].size_line), &(a->tex[n].endian))))
 	{
 		if (a->tex[n].ptr != 0)
-			free(a->tex[n].ptr);
+			mlx_destroy_image(a->mlx.mlx, a->tex[n].ptr);
+		a->tex[n].ptr = 0;
 		free(filename);
 		close(fd);
 		return (MLX_ERROR);
 	}
 
-	free(a->tex[n].ptr);
-	a->tex[n].ptr = 0;
 	free(filename);
 	close(fd);
 
