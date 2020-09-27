@@ -53,11 +53,12 @@ t_vec	ray_x_face(t_ray *ray, t_entity *wall, t_vec *origin)
 
 void	draw_vertical(t_screen *screen, t_entity *wall, t_vec *hit_info, int min)
 {
-	int		screen_y0;
-	int		screen_y1;
-	int		screen_delta_y;
-	int		texture_x;
-	int		texture_y;
+	int				screen_y0;
+	int				screen_y1;
+	int				screen_delta_y;
+	int				texture_x;
+	int				texture_y;
+	unsigned int	color;
 
 	texture_x = hit_info->y * wall->texture->w;
 	screen_y0 = -(WALL_H - EYE_LEVEL) / hit_info->x * screen->distance + screen->h / 2;
@@ -73,10 +74,10 @@ void	draw_vertical(t_screen *screen, t_entity *wall, t_vec *hit_info, int min)
 			screen_y0++;
 			continue ;
 		}
-		if (img_pick_color(wall->texture, texture_x, texture_y) != 0xff000000)
+		if ((color = img_pick_color(wall->texture, texture_x, texture_y)) \
+		 != 0xff000000)
 		{
-			screen->pixel[min][screen_y0].color[0] = \
-				img_pick_color(wall->texture, texture_x, texture_y);
+			screen->pixel[min][screen_y0].color[0] = color;
 			screen->pixel[min][screen_y0].distance = hit_info->x;
 		}
 		screen_y0++;
