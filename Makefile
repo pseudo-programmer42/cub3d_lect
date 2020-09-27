@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: minckim <minckim@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: hyochoi <hyochoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/10 13:28:31 by hyochoi           #+#    #+#              #
-#    Updated: 2020/09/24 20:08:29 by minckim          ###   ########.fr        #
+#    Updated: 2020/09/27 18:24:24 by hyochoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,12 @@ CC = gcc
 IMG = img.bmp
 LIBMLX_DIR = mlx
 MLX_FLAGS = -framework OpenGL -framework AppKit
-# CFLAGS = -g
 CFLAGS = -Wall -Wextra -Werror -g -O3
 INCS = includes
 SRCS_DIR = ./srcs/
 SRCS_FILE = \
 	cub3d.c			init_all.c 		parse_all.c	\
-	parse_tool.c 	print_msg.c 	save_bmp.c \
+	parse_tool.c 	print_msg.c 	save_bmp.c 		draw_frame.c 
 
 SRCS_MINCKIM_DIR = ./srcs_minckim/
 SRCS_MINCKIM_FILE = \
@@ -39,7 +38,7 @@ UTIL_O = $(UTIL:.c=.o)
 HEADER =	./includes/cub3d.h ./includes/hyochoi_cub3d.h ./includes/utils.h \
 			./includes/hyochoi_macros.h
 
-.PHONY: all clean fclean re bonus norm
+.PHONY: all clean fclean re norm
 
 all: $(NAME)
 

@@ -11,6 +11,8 @@
 ** ============================================================================
 */
 
+# ifndef MINCKIM_STRUCT
+#  define MINCKIM_STRUCT
 typedef struct  	s_vec{
 	double			x; 
 	double			y; 
@@ -60,6 +62,7 @@ typedef struct		s_runtime{
 	int				color_floor;
 	int				color_ceiling;
 }					t_runtime;
+# endif
 
 /*
 **	===========================================================================

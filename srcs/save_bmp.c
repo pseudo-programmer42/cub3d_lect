@@ -6,14 +6,14 @@
 /*   By: hyochoi <hyochoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 19:12:34 by hyochoi           #+#    #+#             */
-/*   Updated: 2020/09/24 23:40:39 by hyochoi          ###   ########.fr       */
+/*   Updated: 2020/09/27 18:19:24 by hyochoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "hyochoi_macros.h"
 
-static void	bmp_type(t_all *a, int fd)
+static void	bmp_type(t_screen *s, int fd)
 {
 	int				tmp;
 	int				i;
@@ -24,7 +24,7 @@ static void	bmp_type(t_all *a, int fd)
 		buf[i++] = 0;
 	buf[0] = (unsigned char)('B');
 	buf[1] = (unsigned char)('M');
-	tmp = 4 * (a->img.w * a->img.h) + 14 + 40;
+	tmp = 4 * (s->w * s->h) + 14 + 40;
 	buf[2] = (unsigned char)(tmp % 256);
 	buf[3] = (unsigned char)(tmp / 256 % 256);
 	buf[4] = (unsigned char)(tmp / 256 / 256 % 256);
@@ -33,7 +33,7 @@ static void	bmp_type(t_all *a, int fd)
 	write(fd, buf, 14);
 }
 
-static void	bmp_info(t_all *a, int fd)
+static void	bmp_info(t_screen *s, int fd)
 {
 	int				i;
 	unsigned char	buf[40];
@@ -42,33 +42,33 @@ static void	bmp_info(t_all *a, int fd)
 	while (i < 40)
 		buf[i++] = 0;
 	buf[0] = (unsigned char)(40);
-	buf[4] = (unsigned char)(a->img.w % 256);
-	buf[5] = (unsigned char)(a->img.w / 256 % 256);
-	buf[6] = (unsigned char)(a->img.w / 256 / 256 % 256);
-	buf[7] = (unsigned char)(a->img.w / 256 / 256 / 256);
-	buf[8] = (unsigned char)(a->img.h % 256);
-	buf[9] = (unsigned char)(a->img.h / 256 % 256);
-	buf[10] = (unsigned char)(a->img.h / 256 / 256 % 256);
-	buf[11] = (unsigned char)(a->img.h / 256 / 256 / 256);
+	buf[4] = (unsigned char)(s->w % 256);
+	buf[5] = (unsigned char)(s->w / 256 % 256);
+	buf[6] = (unsigned char)(s->w / 256 / 256 % 256);
+	buf[7] = (unsigned char)(s->w / 256 / 256 / 256);
+	buf[8] = (unsigned char)(s->h % 256);
+	buf[9] = (unsigned char)(s->h / 256 % 256);
+	buf[10] = (unsigned char)(s->h / 256 / 256 % 256);
+	buf[11] = (unsigned char)(s->h / 256 / 256 / 256);
 	buf[12] = (unsigned char)(1);
 	buf[14] = (unsigned char)(32);
 	write(fd, buf, 40);
 }
 
-static void	bmp_data(t_all *a, int fd)
+static void	bmp_data(t_screen *s, int fd)
 {
 	int				tmp;
 	int				i;
 	int				j;
 	unsigned char	buf[4];
 
-	j = a->img.h - 1;
+	j = s->h - 1;
 	while (j >= 0)
 	{
 		i = 0;
-		while (i < a->img.w)
+		while (i < s->w)
 		{
-			tmp = a->img.addr[i + j * a->img.w];
+			tmp = s->img.addr[i + j * s->w];
 			buf[0] = (unsigned char)(tmp % 256);
 			buf[1] = (unsigned char)(tmp / 256 % 256);
 			buf[2] = (unsigned char)(tmp / 256 / 256);
@@ -80,18 +80,20 @@ static void	bmp_data(t_all *a, int fd)
 	}
 }
 
-int			save_bmp(t_all *a)
+int			save_bmp(t_runtime *r)
 {
-	int		i;
-	int		fd;
+	int			i;
+	int			fd;
+	t_screen	*s;
 
 	i = 0;
-	//draw_screen(a, SAVE);
-	fd = open("img.bmp", O_CREAT | O_WRONLY | O_TRUNC, 0700);
-	bmp_type(a, fd);
-	bmp_info(a, fd);
-	bmp_data(a, fd);
+	s = draw_frame(r);
+	if (!(fd = open("img.bmp", O_CREAT | O_WRONLY | O_TRUNC, 0700)))
+		return (OPEN_ERROR);
+	bmp_type(s, fd);
+	bmp_info(s, fd);
+	bmp_data(s, fd);
 	close(fd);
-	//close_window(a);
+	cub_close();
 	return (0);
 }

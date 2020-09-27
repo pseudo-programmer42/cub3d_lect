@@ -6,7 +6,7 @@
 /*   By: hyochoi <hyochoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 23:06:43 by hyochoi           #+#    #+#             */
-/*   Updated: 2020/09/25 00:35:57 by hyochoi          ###   ########.fr       */
+/*   Updated: 2020/09/27 18:19:32 by hyochoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,59 @@ int					error_msg(int num);
 **	===========================================================================
 **					save_bmp.c
 */
-int					save_bmp(t_all *a);
+# ifndef MINCKIM_STRUCT
+#  define MINCKIM_STRUCT
+typedef struct  	s_vec{
+	double			x; 
+	double			y; 
+}					t_vec;
+
+typedef struct  	s_ray{
+	t_vec			dir;
+	double			distance;
+}					t_ray;
+
+typedef struct  	s_pixel{
+	double			distance;
+	unsigned int	*color;
+}					t_pixel;
+
+typedef struct  	s_screen{
+	void			*mlx;
+	void			*win;
+	t_img			img;
+	t_pixel			**pixel;
+	t_vec			origin;
+	t_vec			dir;
+	t_vec			plane;
+	double			sin_unit;
+	double			cos_unit;
+	double			distance;
+	t_ray			*ray;
+	int				w;
+	int				h;
+}					t_screen;
+
+typedef struct		s_entity{
+	t_vec			a;
+	t_vec			b;
+	t_img			*texture;
+}					t_entity;
+
+typedef struct		s_runtime{
+	t_screen		screen;
+	t_vec			player_origin;
+	t_vec			player_dir;
+	t_vec			player_plane;
+	t_img			texture[TEXNUM_MAX];
+	t_entity		*wall;
+	t_entity		*sprite;
+	t_key			key;
+	int				color_floor;
+	int				color_ceiling;
+}					t_runtime;
+# endif
+t_screen			*draw_frame(t_runtime *r);
+int					save_bmp(t_runtime *r);
 
 #endif
