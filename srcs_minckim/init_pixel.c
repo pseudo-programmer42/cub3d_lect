@@ -1,19 +1,19 @@
 #include "minckim_cub3d.h"
 
-void		img_put_color(t_img *img, int x, int y, int color)
+void		img_put_color(t_img *img, int x, int y, unsigned int color)
 {
-	int		*point;
+	unsigned int		*point;
 
-	point = (int*)((char*)img->addr + img->size_line * y \
+	point = (unsigned int*)((char*)img->addr + img->size_line * y \
 			+ img->bits_per_pixel / 8 * x);
 	*point = color;
 }
 
 unsigned int	img_pick_color(t_img *img, int x, int y)
 {
-	int		*point;
+	unsigned int	*point;
 
-	point = (int*)((char*)img->addr + img->size_line * y \
+	point = (unsigned int*)((char*)img->addr + img->size_line * y \
 			+ img->bits_per_pixel / 8 * x);
 	return *point;
 }

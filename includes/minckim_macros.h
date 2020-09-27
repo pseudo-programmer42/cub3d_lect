@@ -1,5 +1,5 @@
 #include <math.h>
-#define FOV M_PI_4
+#define FOV M_PI_2
 
 # define EAST			0
 # define NORTH			1

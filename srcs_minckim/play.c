@@ -25,13 +25,13 @@ void	refresh_ray(t_ray *ray, t_vec *dir, t_vec *plane, int w)
 	int		x;
 	t_vec	plane_tmp;
 
-	plane_tmp = vec_mul(plane, -(double)w / 2);
+	plane_tmp = vec_mul(*plane, -(double)w / 2);
 	ray[0].distance = INFINITY;
-	ray[0].dir = vec_add(dir, &plane_tmp);
+	ray[0].dir = vec_add(*dir, plane_tmp);
 	x = 0;
 	while (++x < w)
 	{
-		ray[x].dir = vec_add(&ray[x - 1].dir, plane);
+		ray[x].dir = vec_add(ray[x - 1].dir, *plane);
 		ray[x].distance = INFINITY;
 	}
 }
