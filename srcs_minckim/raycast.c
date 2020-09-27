@@ -51,11 +51,11 @@ t_vec	ray_x_face(t_ray *ray, t_entity *wall, t_vec *origin)
 	return (equation_solver(&ray->dir, &coeff, &constant));
 }
 
-void	draw_vertical(t_screen *screen, t_entity *wall, t_vec *hit_info, int min)
+void	draw_vertical(t_screen *screen, t_entity *wall, t_vec *hit_info, int x)
 {
 	int				screen_y0;
 	int				screen_y1;
-	int				screen_delta_y;
+	int				screen_y_h;
 	int				texture_x;
 	int				texture_y;
 	unsigned int	color;
@@ -63,12 +63,12 @@ void	draw_vertical(t_screen *screen, t_entity *wall, t_vec *hit_info, int min)
 	texture_x = hit_info->y * wall->texture->w;
 	screen_y0 = -(WALL_H - EYE_LEVEL) / hit_info->x * screen->distance + screen->h / 2;
 	screen_y1 = (EYE_LEVEL) / hit_info->x * screen->distance + screen->h / 2;
-	screen_delta_y = screen_y1 - screen_y0;
+	screen_y_h = screen_y1 - screen_y0;
 	screen_y0 = screen_y0 < 0 ? 0 : screen_y0;
 	while (screen_y0 < screen_y1 && screen_y0 < screen->h)
 	{
 		// 곱셈 및 나눗셈 순서에 주의!!
-		texture_y = wall->texture->h - (screen_y1 - screen_y0) * wall->texture->h / screen_delta_y;
+		texture_y = wall->texture->h - (screen_y1 - screen_y0) * wall->texture->h / screen_y_h;
 		if (texture_y < 0 || wall->texture->h <= texture_y)
 		{
 			screen_y0++;
@@ -77,8 +77,8 @@ void	draw_vertical(t_screen *screen, t_entity *wall, t_vec *hit_info, int min)
 		if ((color = img_pick_color(wall->texture, texture_x, texture_y)) \
 		 != 0xff000000)
 		{
-			screen->pixel[min][screen_y0].color[0] = color;
-			screen->pixel[min][screen_y0].distance = hit_info->x;
+			screen->pixel[x][screen_y0].color[0] = color;
+			screen->pixel[x][screen_y0].distance = hit_info->x;
 		}
 		screen_y0++;
 	}
@@ -87,32 +87,59 @@ void	draw_vertical(t_screen *screen, t_entity *wall, t_vec *hit_info, int min)
 void	draw_wall(t_screen *screen, t_entity *wall)
 {
 	t_vec	range;
-	int		min;
-	int		max;
+	int		x;
+	int		x_max;
 	t_vec	hit_info;
 	t_ray	*ray;
 
 	while (wall->texture)
 	{
 		range = get_width_range(screen, wall);
-		min = (int)range.x;
-		max = (int)range.y;
-		while (min < max)
+		x = (int)range.x;
+		x_max = (int)range.y;
+		while (x < x_max)
 		{
-			ray = screen->ray + min;
+			ray = screen->ray + x;
 			hit_info = ray_x_face(ray, wall, &screen->origin);
 			if (0 < hit_info.x && 0 <= hit_info.y && hit_info.y <= 1)
 			{
 				if (hit_info.x < ray->distance)
 				{
 					ray->distance = hit_info.x;
-					draw_vertical(screen, wall, &hit_info, min);
+					draw_vertical(screen, wall, &hit_info, x);
 				}
 			}
-			min++;
+			x++;
 		}
 		wall++;
 	}
+	// t_vec	range;
+	// int		min;
+	// int		max;
+	// t_vec	hit_info;
+	// t_ray	*ray;
+
+	// while (wall->texture)
+	// {
+	// 	range = get_width_range(screen, wall);
+	// 	min = (int)range.x;
+	// 	max = (int)range.y;
+	// 	while (min < max)
+	// 	{
+	// 		ray = screen->ray + min;
+	// 		hit_info = ray_x_face(ray, wall, &screen->origin);
+	// 		if (0 < hit_info.x && 0 <= hit_info.y && hit_info.y <= 1)
+	// 		{
+	// 			if (hit_info.x < ray->distance)
+	// 			{
+	// 				ray->distance = hit_info.x;
+	// 				draw_vertical(screen, wall, &hit_info, min);
+	// 			}
+	// 		}
+	// 		min++;
+	// 	}
+	// 	wall++;
+	// }
 }
 
 void	draw_sprite(t_screen *screen, t_entity *sprite)
