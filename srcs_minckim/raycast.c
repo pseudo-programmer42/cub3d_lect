@@ -113,33 +113,6 @@ void	draw_wall(t_screen *screen, t_entity *wall)
 		}
 		wall++;
 	}
-	// t_vec	range;
-	// int		min;
-	// int		max;
-	// t_vec	hit_info;
-	// t_ray	*ray;
-
-	// while (wall->texture)
-	// {
-	// 	range = get_width_range(screen, wall);
-	// 	min = (int)range.x;
-	// 	max = (int)range.y;
-	// 	while (min < max)
-	// 	{
-	// 		ray = screen->ray + min;
-	// 		hit_info = ray_x_face(ray, wall, &screen->origin);
-	// 		if (0 < hit_info.x && 0 <= hit_info.y && hit_info.y <= 1)
-	// 		{
-	// 			if (hit_info.x < ray->distance)
-	// 			{
-	// 				ray->distance = hit_info.x;
-	// 				draw_vertical(screen, wall, &hit_info, min);
-	// 			}
-	// 		}
-	// 		min++;
-	// 	}
-	// 	wall++;
-	// }
 }
 
 void	draw_sprite(t_screen *screen, t_entity *sprite)
