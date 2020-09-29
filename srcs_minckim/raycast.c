@@ -67,7 +67,6 @@ void	draw_vertical(t_screen *screen, t_entity *wall, t_vec *hit_info, int x)
 	screen_y0 = screen_y0 < 0 ? 0 : screen_y0;
 	while (screen_y0 < screen_y1 && screen_y0 < screen->h)
 	{
-		// 곱셈 및 나눗셈 순서에 주의!!
 		texture_y = wall->texture->h - (screen_y1 - screen_y0) * wall->texture->h / (float)screen_y_h;
 		if ((color = img_pick_color(wall->texture, texture_x, texture_y)) \
 		 != 0xff000000)
